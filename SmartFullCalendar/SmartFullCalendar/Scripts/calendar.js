@@ -14,8 +14,8 @@
             url: '/api/event/',
             dataType: 'json',
             data: {
-                start: start.toISOString(),
-                end: end.toISOString()
+                startISO: start.toISOString(),
+                endISO: end.toISOString()
             },
             success: function (doc) {
                 var events = [];
