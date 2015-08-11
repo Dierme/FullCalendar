@@ -90,11 +90,19 @@ namespace SmartFullCalendar.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage GetAll(double start, double end)
+        public HttpResponseMessage GetAll(string startISO, string endISO)
         {
-            var userId = User.Identity.GetUserId();
-            var result = repository.TakeAllFromTo(userId, start, end);
-            return Request.CreateResponse(HttpStatusCode.OK, result);
+            DateTime startDate;
+            DateTime endDate;
+            var converted = DateTime.TryParse(startISO, out startDate);
+            converted = DateTime.TryParse(endISO, out endDate);
+            if (converted)
+            {
+                var userId = User.Identity.GetUserId();
+                var result = repository.TakeAllFromTo(userId, startDate, endDate).ToArray();
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
         #region Helpers

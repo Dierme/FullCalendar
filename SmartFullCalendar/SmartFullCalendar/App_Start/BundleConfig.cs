@@ -10,12 +10,15 @@ namespace SmartFullCalendar
         {
             bundles.Add(new StyleBundle("~/Content/fullcalendarcss").Include(
                      "~/Content/themes/jquery.ui.all.css",
-                     "~/Content/fullcalendar.css"));
+                     "~/Content/fullcalendar.css",
+                     "~/Content/bootstrap-datetimepicker.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/fullcalendarjs").Include(
                       "~/Scripts/jquery-ui-{version}.js",
+                      "~/Scripts/moment.min.js",
                       "~/Scripts/fullcalendar.min.js",
-                      "~/Scripts/calendar.js")); 
+                      "~/Scripts/calendar.js",
+                      "~/Scripts/bootstrap-datetimepicker.min.js")); 
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));

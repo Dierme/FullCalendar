@@ -8,16 +8,21 @@
     allDaySlot: false,
     selectable: true,
     events: function (start, end, callback) {
+        console.log(start.toISOString());
+        console.log(end.toISOString());
         $.ajax({
             url: '/api/event/',
             dataType: 'json',
             data: {
-                start: start.getTime()/1000,
-                end: end.getTime() / 1000
+                start: start.toISOString(),
+                end: end.toISOString()
             },
             success: function (doc) {
                 var events = [];
                 $(doc).each(function () {
+                    console.log($(this).attr('Id'));
+                    console.log($(this).attr('Title'));
+                    console.log($(this).attr('DateStart'));
                     events.push({
                         id: $(this).attr('Id'),
                         title: $(this).attr('Title'),
@@ -40,11 +45,13 @@
 
         $('#infoDialog').modal('show');
     },
-    dayClick: function (date, allDay, jsEvent, view) {
-        
-        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-        // change the day's background color just for fun
-        $(this).css('background-color', 'red');
-
+    dayClick: function (date, allDay, jsEvent, view) {        
+        $('#createDialog').modal('show');
+    },
+    select: function (startDate, endDate, allDay, jsEvent, view) {
+        $('#createDialog').modal('show');
     }
+});
+$(function () {
+    $('#datetimepicker1').datetimepicker();
 });
