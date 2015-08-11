@@ -12,7 +12,6 @@ namespace SmartFullCalendar.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            ViewBag.UserId = User.Identity.GetUserId();
             return View();
         }
 

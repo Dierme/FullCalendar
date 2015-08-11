@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace SmartFullCalendar.Controllers
 {
+    [Authorize]
     public class EventController : ApiController
     {
         private IRepository repository;
@@ -89,8 +90,9 @@ namespace SmartFullCalendar.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage GetAll(string userId, double start, double end)
+        public HttpResponseMessage GetAll(double start, double end)
         {
+            var userId = User.Identity.GetUserId();
             var result = repository.TakeAllFromTo(userId, start, end);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }

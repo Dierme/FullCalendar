@@ -12,7 +12,6 @@
             url: '/api/event/',
             dataType: 'json',
             data: {
-                userId: $('input[name =Id]').val(),
                 start: start.getTime()/1000,
                 end: end.getTime() / 1000
             },
@@ -27,8 +26,7 @@
                         description: $(this).attr('Description'),
                         location: $(this).attr('Location'),
                         category: $(this).attr('Category'),
-                        allDay: false
-                        
+                        allDay: false                        
                     });                    
                 });
                 callback(events);
@@ -36,7 +34,11 @@
         });
     },
     eventClick: function (calEvent, jsEvent, view) {
-        alert('Event: ' + calEvent.title);
+        $('input[name =Id]').val(calEvent.id);
+        $('input[name =Title]').val(calEvent.title);
+        $('input[name =Description]').val(calEvent.description);
+
+        $('#infoDialog').modal('show');
     },
     dayClick: function (date, allDay, jsEvent, view) {
         
