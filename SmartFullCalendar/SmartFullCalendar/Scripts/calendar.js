@@ -35,7 +35,11 @@
     },
 
     eventClick: function (calEvent, jsEvent, view) {
-        alert("hi");
+        $('input[name =Id]').val(calEvent.id);
+        $('input[name =Title]').val(calEvent.title);
+        $('input[name =Description]').val(calEvent.description);
+
+        $('#infoDialog').modal('show');
     },
 
     select: function (startDate, endDate, allDay, jsEvent, view) {
@@ -96,6 +100,17 @@ $("#btnPopupSave").click(function (e)
         }       
     }
     $("#eventForm").submit();
+});
+
+$("#btnPopupRemove").click(function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/api/event/remove?Id=' + $('input[name =Id]').val(),
+        success: function () {
+            alert("Success!");
+            $('#calendar').fullCalendar('refetchEvents');
+        }
+    });
 });
 
 function ClearCreatePopup()
