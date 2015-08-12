@@ -5,17 +5,17 @@
                 <button class="close" data-dismiss="modal" area-hidden="true">x</button>
                 <h4>Event details</h4>
             </div>
-            <div class="modal-body">              
-                <form id="eventForm" class="well" action="api/event/create" method="post">
+            <div class="modal-body" >              
+                <form id="eventForm" class="well" action="api/event/create" method="post" style="margin-bottom:0">
 
-                    <label>Event title</label>
+                    <label>Event title*</label>
                     <input type="text" name="Title" class="form-control" id="Title" placeholder="Title here">
 
                     <label>Event description</label>
                     <textarea id="Description" class="form-control" name="Description" placeholder="Description here"></textarea>
 
-                    <label>Start date</label>
-                    <input type='text' class="form-control" name="DateStart" id='datetimepicker1' />
+                    <label>Start date*</label>
+                    <input type='text' class="form-control" name="DateStart" id='datetimepicker1' placeholder="Start date here" />
 
                     <label>End date</label>
                     <input type='text' class="form-control" name="DateEnd" id='datetimepicker2' placeholder="End date here" /> 
@@ -34,11 +34,10 @@
                         <option>Fun</option>
                         <option>Other</option>
                     </select>
-                    <input type="submit" value="Submit" class="btn btn-primary" />
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="submit" data-dismiss="modal" class="btn btn-default">Cancel</button>
+            <div class="modal-footer" style="margin-top:0">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
                 <button type="button" id="btnPopupSave" data-dismiss="modal" class="btn btn-primary">Add Event</button>
             </div>
         </div>

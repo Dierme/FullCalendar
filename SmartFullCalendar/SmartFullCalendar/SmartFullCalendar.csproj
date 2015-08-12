@@ -189,6 +189,10 @@
     <Compile Include="Migrations\201508112215262_dataMigration.Designer.cs">
       <DependentUpon>201508112215262_dataMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508120828399_dateend nullable.cs" />
+    <Compile Include="Migrations\201508120828399_dateend nullable.Designer.cs">
+      <DependentUpon>201508120828399_dateend nullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abstracts\IRepository.cs" />
     <Compile Include="Models\Abstracts\IStoreAppContext.cs" />
@@ -307,6 +311,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -321,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508112215262_dataMigration.resx">
       <DependentUpon>201508112215262_dataMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508120828399_dateend nullable.resx">
+      <DependentUpon>201508120828399_dateend nullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

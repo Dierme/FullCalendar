@@ -110,7 +110,7 @@ namespace SmartFullCalendar.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        #region Helpers
+        #region Helpers        
         private HttpResponseMessage GetErrorResult(IdentityResult result)
         {
             if (result == null)

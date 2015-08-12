@@ -41,12 +41,13 @@ namespace SmartFullCalendar.Models
         [DataType(DataType.DateTime)]
         public DateTime DateAdd { get; set; }
 
-        [DataType(DataType.DateTime)]
-        public DateTime DateStart { get; set; }
-
         [Required]
+        [Display(Name="Start date")]
+        public DateTime? DateStart { get; set; }        
+        
+        
         [DataType(DataType.DateTime)]
-        public DateTime DateEnd { get; set; }
+        public DateTime? DateEnd { get; set; }
 
         public string Location { get; set; }
 
