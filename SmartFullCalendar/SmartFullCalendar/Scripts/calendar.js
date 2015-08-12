@@ -38,10 +38,7 @@
         $('input[name =Id]').val(calEvent.id);
         $('input[name =Title]').val(calEvent.title);
         $('input[name =Description]').val(calEvent.description);
-        $('input[name =DateStart]').val(calEvent.start);
-        $('input[name =DateEnd]').val(calEvent.end);
-        $('input[name =Location]').val(calEvent.location);
-        $('input[name =Category]').val(calEvent.category);
+
         $('#infoDialog').modal('show');
     },
 
