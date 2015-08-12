@@ -63,13 +63,14 @@ namespace SmartFullCalendar.Controllers
         }
 
         [HttpDelete]
-        public async Task<HttpResponseMessage> RemoveEvent([FromBody] string id)
+        [ActionName("Remove")]
+        public async Task<HttpResponseMessage> RemoveEvent(string Id)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
             }
-            IdentityResult result = await repository.Remove(id);
+            IdentityResult result = await repository.Remove(Id);
             HttpResponseMessage errorResult = GetErrorResult(result);
 
             if (errorResult != null)
