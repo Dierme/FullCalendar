@@ -41,7 +41,6 @@ namespace SmartFullCalendar.Models
         [DataType(DataType.DateTime)]
         public DateTime DateAdd { get; set; }
 
-        [Required]
         [DataType(DataType.DateTime)]
         public DateTime DateStart { get; set; }
 
@@ -54,14 +53,13 @@ namespace SmartFullCalendar.Models
         [Required]
         public Category Category { get; set; }
 
-        [Required]
         [ForeignKey("User")]
         public string UserId { get; set; }
 
         public ApplicationUser User { get; set; }
     }
 
-    public enum Category { Home, Business, Study, Fun }
+    public enum Category { Home, Business, Study, Fun, Other }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IStoreAppContext
     {

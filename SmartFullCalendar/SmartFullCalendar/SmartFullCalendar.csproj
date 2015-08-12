@@ -181,6 +181,15 @@
     </Compile>
     <Compile Include="Helpers\AppDbInit.cs" />
     <Compile Include="Infrastructure\Ninject.cs" />
+    <Compile Include="Migrations\201508111353224_InitialCreate.cs" />
+    <Compile Include="Migrations\201508111353224_InitialCreate.Designer.cs">
+      <DependentUpon>201508111353224_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508112215262_dataMigration.cs" />
+    <Compile Include="Migrations\201508112215262_dataMigration.Designer.cs">
+      <DependentUpon>201508112215262_dataMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abstracts\IRepository.cs" />
     <Compile Include="Models\Abstracts\IStoreAppContext.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -305,6 +314,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508111353224_InitialCreate.resx">
+      <DependentUpon>201508111353224_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508112215262_dataMigration.resx">
+      <DependentUpon>201508112215262_dataMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

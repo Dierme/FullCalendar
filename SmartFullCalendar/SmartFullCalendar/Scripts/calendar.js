@@ -38,20 +38,42 @@
             }            
         });
     },
-    eventClick: function (calEvent, jsEvent, view) {
-        $('input[name =Id]').val(calEvent.id);
-        $('input[name =Title]').val(calEvent.title);
-        $('input[name =Description]').val(calEvent.description);
 
-        $('#infoDialog').modal('show');
+    eventClick: function (calEvent, jsEvent, view) {
+        
     },
-    dayClick: function (date, allDay, jsEvent, view) {        
+
+    dayClick: function (date, allDay, jsEvent, view) {
+        $('input[name =Title]').val('');
+        $('input[name =Description]').val('');
+        $('input[name =DateAdd]').val(new Date().toISOString());
+        $('#datetimepicker1').data("DateTimePicker").date(date);
+        $('#datetimepicker1').data("DateTimePicker").widgetPositioning({vertical:'top',horizontal:'left'});
+        $('#datetimepicker2').data("DateTimePicker").widgetPositioning({ vertical: 'bottom', horizontal: 'left' });
         $('#createDialog').modal('show');
     },
+
     select: function (startDate, endDate, allDay, jsEvent, view) {
         $('#createDialog').modal('show');
     }
 });
 $(function () {
-    $('#datetimepicker1').datetimepicker();
+    $('#datetimepicker2').datetimepicker();
+    $('#datetimepicker1').datetimepicker();    
+});
+
+$("#eventForm").submit(function () {
+    var jqxhr = $.post('api/event/create', $('#eventForm').serialize())
+        .success(function () {
+            $('#message').val("Good");
+            $('#calendar').fullCalendar('refetchEvents');
+        })
+        .error(function () {
+            $('#message').html("Error posting the update.");
+        });
+    return false;
+});
+$("#btnPopupSave").click(function (e)
+{
+    $("#eventForm").submit();
 });

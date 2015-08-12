@@ -27,7 +27,8 @@ namespace SmartFullCalendar.Models.EFRpositories
         }
 
         public async Task<IdentityResult> Create(Event item)
-        {
+        {             
+            item.Id = Guid.NewGuid().ToString();            
             context.Events.Add(item);
             var result = await SaveChangesAsync();
             return result;

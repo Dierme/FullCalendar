@@ -22,8 +22,14 @@ namespace SmartFullCalendar.Controllers
         }
 
         [HttpPost]
+        [ActionName("Create")]
         public async Task<HttpResponseMessage> CreateEvent([FromBody]Event item)
         {
+            if (item != null) 
+            {
+                item.UserId = User.Identity.GetUserId();
+            }
+
             if (!ModelState.IsValid)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
@@ -35,7 +41,6 @@ namespace SmartFullCalendar.Controllers
             {
                 return errorResult;
             }
-
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
