@@ -73,7 +73,6 @@ $("#eventForm").submit(function () {
             var a = errors.responseJSON;
             $.each(a, function (i, fieldItem)
             {
-                console.log(fieldItem);
                 $.each(fieldItem._errors, function (j, error)
                 {
                     message += error['<ErrorMessage>k__BackingField']+'\n';                    
@@ -91,17 +90,11 @@ $("#btnPopupSave").click(function (e)
     if (start != null && end != null) {
         var startDate = start.toDate();
         var endDate = end.toDate();
-        console.log(startDate);
-        console.log(endDate);
         if (startDate.getTime() > endDate.getTime()) {
             $('#datetimepicker1').data("DateTimePicker").date(endDate);
             $('#datetimepicker2').data("DateTimePicker").date(startDate);
-        }
-        startDate = $('#datetimepicker1').data("DateTimePicker").date().toDate();
-        endDate = $('#datetimepicker2').data("DateTimePicker").date().toDate();       
+        }       
     }
-    alert($('input[name =DateStart]').val());
-    alert($('input[name =DateEnd]').val());
     $("#eventForm").submit();
 });
 
