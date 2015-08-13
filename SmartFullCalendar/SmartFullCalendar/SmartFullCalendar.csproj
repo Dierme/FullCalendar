@@ -200,6 +200,10 @@
     <Compile Include="Migrations\201508130843580_colorNAme.Designer.cs">
       <DependentUpon>201508130843580_colorNAme.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508132058195_checked.cs" />
+    <Compile Include="Migrations\201508132058195_checked.Designer.cs">
+      <DependentUpon>201508132058195_checked.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abstracts\IRepository.cs" />
     <Compile Include="Models\Abstracts\IStoreAppContext.cs" />
@@ -343,6 +347,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508130843580_colorNAme.resx">
       <DependentUpon>201508130843580_colorNAme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508132058195_checked.resx">
+      <DependentUpon>201508132058195_checked.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -29,6 +29,7 @@ namespace SmartFullCalendar.Controllers
             {
                 item.UserId = User.Identity.GetUserId();
                 item.ColorName = GetEnumColor(item.Category);
+                item.Checked = false;
             }
 
             if (!ModelState.IsValid)
@@ -52,6 +53,7 @@ namespace SmartFullCalendar.Controllers
             {
                 item.UserId = User.Identity.GetUserId();
                 item.ColorName = GetEnumColor(item.Category);
+                item.Checked = false;
             }
             if (!ModelState.IsValid)
             {

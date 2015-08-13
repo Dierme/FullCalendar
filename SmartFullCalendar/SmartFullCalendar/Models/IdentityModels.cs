@@ -57,6 +57,8 @@ namespace SmartFullCalendar.Models
 
         public string ColorName { get; set; }
 
+        public bool? Checked { get; set; }
+
         [ForeignKey("User")]
         public string UserId { get; set; }
 

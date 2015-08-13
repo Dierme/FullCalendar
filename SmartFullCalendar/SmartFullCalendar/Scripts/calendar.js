@@ -211,8 +211,8 @@ function ClearCreatePopup()
     $('#createTitle').val('');
     $('#createDescription').val('');
     $('#createDateAdd').val('');
-    $('#datetimepicker1').val('');
-    $('#datetimepicker2').val('');
+    $('#datetimepicker1 input').val('');
+    $('#datetimepicker2 input').val('');
     $('#createLocation').val('');
     $('#createCategory').val('Home');    
 }
@@ -231,8 +231,8 @@ function ClearEditPopup() {
     $('#editTitle').val('');
     $('#editDescription').val('');
     $('#editDateAdd').val('');
-    $('#editdatetimepicker1').val('');
-    $('#editdatetimepicker2').val('');
+    $('#editdatetimepicker1 input').val('');
+    $('#editdatetimepicker2 input').val('');
     $('#editLocation').val('');
     $('#editCategory').val('Home');
 }

@@ -6,31 +6,42 @@
                 <h4>Event details</h4>
             </div>
             <div class="modal-body">
-                <div id="EventInfoForm" class="well">
-
+                <div id="EventInfoForm" class="well zero" style="padding:15px;">
                     <input type="hidden" name="Id" id="infoId">
-
-                    <dl class="dl-horizontal ">                       
-
-                        <dt class="zero">Event title: &nbsp;</dt>
-                        <dd class="zero"  id="infoTitle"></dd>
-
-                        <dt class="zero">Event description: &nbsp;</dt>
-                        <dd class="zero" id="infoDescription"></dd>
-
-                        <dt class="zero">Event start date: &nbsp;</dt>
-                        <dd class="zero" id="infoDateStart"></dd>
-
-                        <dt class="zero">Event end date: &nbsp;</dt>
-                        <dd class="zero" id="infoDateEnd"></dd>
-
-                        <dt class="zero">Event location: &nbsp;</dt>
-                        <dd class="zero" id="infoLocation"></dd>
-
-                        <dt class="zero">Event category: &nbsp;</dt>
-                        <dd class="zero" id="infoCategory"></dd>
-
-                    </dl>                   
+                    <table class="table table-striped table-bordered zero">
+                        <thead>
+                            <tr class="success">
+                                <td><b>Parameter</b></td>
+                                <td><b>Value</b></td>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <tr>
+                                <td ><b>Title:</b></td>
+                                <td id="infoTitle"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Description:</b></td>
+                                <td id="infoDescription"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Start date:</b></td>
+                                <td id="infoDateStart"></td>
+                            </tr>
+                            <tr>
+                                <td><b>End date:</b></td>
+                                <td id="infoDateEnd"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Location:</b></td>
+                                <td id="infoLocation"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Category:</b></td>
+                                <td id="infoCategory"></td>
+                            </tr>
+                        </tbody>
+                    </table>                    
                 </div>
             </div>
             <div class="modal-footer">
