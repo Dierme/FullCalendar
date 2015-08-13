@@ -1,21 +1,37 @@
 ﻿<div id="infoDialog" class="modal fade">
-    <div id="dialogContent" class="modal-dialog">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal" area-hidden="true">x</button>
                 <h4>Детали события</h4>
-
             </div>
             <div class="modal-body">
-                <form id="EventDetailsForm" class="well">
-                    <input type="hidden" name="Id" id="Id">
-                    <label>Event title</label>
-                    <input type="text" name="Title" class="form-control" id="Title" placeholder="Title here">
-                    <label>Event description</label>
-                    <input type="text" name="Description" class="form-control" id="Description" placeholder="Description here">
+                <div id="EventInfoForm" class="well">
 
-                </form>
+                    <input type="hidden" name="Id" id="infoId">
 
+                    <dl class="dl-horizontal ">                       
+
+                        <dt class="zero">Event title: &nbsp;</dt>
+                        <dd class="zero"  id="infoTitle"></dd>
+
+                        <dt class="zero">Event description: &nbsp;</dt>
+                        <dd class="zero" id="infoDescription"></dd>
+
+                        <dt class="zero">Event start date: &nbsp;</dt>
+                        <dd class="zero" id="infoDateStart"></dd>
+
+                        <dt class="zero">Event end date: &nbsp;</dt>
+                        <dd class="zero" id="infoDateEnd"></dd>
+
+                        <dt class="zero">Event location: &nbsp;</dt>
+                        <dd class="zero" id="infoLocation"></dd>
+
+                        <dt class="zero">Event category: &nbsp;</dt>
+                        <dd class="zero" id="infoCategory"></dd>
+
+                    </dl>                   
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" id="btnPopupRemove" data-dismiss="modal" class="btn">Remove</button>

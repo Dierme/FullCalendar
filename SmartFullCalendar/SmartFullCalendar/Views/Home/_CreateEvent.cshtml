@@ -1,33 +1,43 @@
 ﻿<div id="createDialog" class="modal fade">
-    <div id="dialogContent" class="modal-dialog">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal" area-hidden="true">x</button>
                 <h4>Event details</h4>
             </div>
             <div class="modal-body" >              
-                <form id="eventForm" class="well" action="api/event/create" method="post" style="margin-bottom:0">
+                <form id="eventCreateForm" class="well" action="api/event/create" method="post" style="margin-bottom:0">
 
                     <label>Event title*</label>
-                    <input type="text" name="Title" class="form-control" id="Title" placeholder="Title here">
+                    <input type="text" name="Title" class="form-control" id="createTitle" placeholder="Title here">
 
                     <label>Event description</label>
-                    <textarea id="Description" class="form-control" name="Description" placeholder="Description here"></textarea>
+                    <textarea id="createDescription" class="form-control" name="Description" placeholder="Description here"></textarea>
 
                     <label>Start date*</label>
-                    <input type='text' class="form-control" name="DateStart" id='datetimepicker1' placeholder="Start date here" />
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" name="DateStart" placeholder="Start date here" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>  
 
                     <label>End date</label>
-                    <input type='text' class="form-control" name="DateEnd" id='datetimepicker2' placeholder="End date here" /> 
+                    <div class='input-group date' id='datetimepicker2'>
+                        <input type='text' class="form-control" name="DateEnd" placeholder="End date here" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>                    
                                        
-                    <input type="hidden" name="DateAdd">
+                    <input type="hidden" name="DateAdd" id="createDateAdd">
 
                     <label>Location</label>
-                    <input type="text" name="Location" class="form-control" id="Location" placeholder="Location here">
+                    <input type="text" name="Location" class="form-control" id="createLocation" placeholder="Location here">
 
                     <label>Category</label>
                     <select data-val="true" class="form-control" data-val-required="The Category field is required."
-                            id="Category" name="Category">
+                            id="createCategory" name="Category">
                         <option selected="selected">Home</option>
                         <option>Business</option>
                         <option>Study</option>

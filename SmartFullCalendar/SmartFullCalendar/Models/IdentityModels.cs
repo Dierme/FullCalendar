@@ -43,6 +43,7 @@ namespace SmartFullCalendar.Models
 
         [Required]
         [Display(Name="Start date")]
+        [DataType(DataType.DateTime)]
         public DateTime? DateStart { get; set; }        
         
         

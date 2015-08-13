@@ -21,7 +21,11 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+}
+
+.zero {
+    margin:0;
+    padding:7px 0 7px 0;
 }
 
 

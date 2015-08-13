@@ -35,16 +35,44 @@
     },
 
     eventClick: function (calEvent, jsEvent, view) {
-        $('input[name =Id]').val(calEvent.id);
-        $('input[name =Title]').val(calEvent.title);
-        $('input[name =Description]').val(calEvent.description);
-
+        ClearInfoPopup();
+        $('#infoId').val(calEvent.id);
+        $('#infoTitle').text(calEvent.title);
+        if (calEvent.description != null)
+            $('#infoDescription').text(calEvent.description);
+        $('#infoDateStart').text(calEvent.start.toString());
+        if (calEvent.end != null)
+            $('#infoDateEnd').text(calEvent.end.toString());
+        if (calEvent.location != null)
+            $('#infoLocation').text(calEvent.location);
+        if (calEvent.category != null)
+        {
+            switch (calEvent.category) {
+                case 0:
+                    $('#infoCategory').text('Home');
+                    break;
+                case 1:
+                    $('#infoCategory').text('Business');
+                    break;
+                case 2:
+                    $('#infoCategory').text('Study');
+                    break;
+                case 3:
+                    $('#infoCategory').text('Fun');
+                    break;
+                case 4:
+                    $('#infoCategory').text('Other');
+                    break;
+            }
+        }
         $('#infoDialog').modal('show');
     },
 
     select: function (startDate, endDate, allDay, jsEvent, view) {
-        ClearCreatePopup();        
-        $('input[name =DateAdd]').val(new Date().toISOString());
+        ClearCreatePopup();
+        startDate.setHours(startDate.getHours() + 1);
+        endDate.setHours(endDate.getHours() + 1);
+        $('#createDateAdd').val(new Date().toISOString());
         $('#datetimepicker1').data("DateTimePicker").date(startDate);
         if (!(endDate.getTime() === startDate.getTime()))
         {
@@ -66,8 +94,8 @@ $(function () {
     $('#datetimepicker2').data("DateTimePicker").widgetPositioning({ vertical: 'bottom', horizontal: 'left' });
 });
 
-$("#eventForm").submit(function () {
-    var jqxhr = $.post('api/event/create', $('#eventForm').serialize())
+$("#eventCreateForm").submit(function () {
+    var jqxhr = $.post('api/event/create', $('#eventCreateForm').serialize())
         .success(function () {
             $('#calendar').fullCalendar('refetchEvents');
             alert("Saved");
@@ -97,15 +125,15 @@ $("#btnPopupSave").click(function (e)
         if (startDate.getTime() > endDate.getTime()) {
             $('#datetimepicker1').data("DateTimePicker").date(endDate);
             $('#datetimepicker2').data("DateTimePicker").date(startDate);
-        }       
+        }        
     }
-    $("#eventForm").submit();
+    $("#eventCreateForm").submit();
 });
 
 $("#btnPopupRemove").click(function () {
     $.ajax({
         type: 'DELETE',
-        url: '/api/event/remove?Id=' + $('input[name =Id]').val(),
+        url: '/api/event/remove?Id=' + $('#infoId').val(),
         success: function () {
             alert("Success!");
             $('#calendar').fullCalendar('refetchEvents');
@@ -115,12 +143,21 @@ $("#btnPopupRemove").click(function () {
 
 function ClearCreatePopup()
 {
-    $('input[name =Title]').val('');
-    $('input[name =Description]').val('');
-    $('input[name =DateAdd]').val('');
-    $('#datetimepicker1').data("DateTimePicker").date('');
-    $('#datetimepicker1').data("DateTimePicker").date('');
-    $('input[name =DateEnd]').val('');
-    $('input[name =Location]').val('');
-    $('input[name =Description]').val('');
+    $('#createTitle').val('');
+    $('#createDescription').val('');
+    $('#createDateAdd').val('');
+    $('#datetimepicker1').val('');
+    $('#datetimepicker2').val('');
+    $('#createLocation').val('');
+    $('#createCategory').val('Home');    
+}
+
+function ClearInfoPopup() {
+    $('#infoId').val('');
+    $('#infoTitle').text('');
+    $('#infoDescription').text('');
+    $('#infoDateStart').text('');
+    $('#infoDateEnd').text('');
+    $('#infoLocation').text('');
+    $('#infoCategory').text('');
 }
