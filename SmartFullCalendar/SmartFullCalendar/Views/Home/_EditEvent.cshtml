@@ -1,0 +1,53 @@
+﻿<div id="editDialog" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" area-hidden="true">x</button>
+                <h4>Event details</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="Id" id="editId" />
+                <label>Event title</label>
+                <input type="text" name="Title" class="form-control" id="editTitle" placeholder="Title here">
+
+                <label>Event description</label>
+                <textarea id="editDescription" class="form-control" name="Description" placeholder="Description here"></textarea>
+
+                <label>Start date</label>
+                <div class='input-group date' id='editdatetimepicker1'>
+                    <input type='text' class="form-control" name="DateStart" placeholder="Start date here" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+
+                <label>End date</label>
+                <div class='input-group date' id='editdatetimepicker2'>
+                    <input type='text' class="form-control" name="DateEnd" placeholder="Start date here" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+
+                <label>Location</label>
+                <input type="text" name="Location" class="form-control" id="editLocation" placeholder="Location here">
+
+                <label>Category</label>
+                <select data-val="true" class="form-control" data-val-required="The Category field is required."
+                        id="editCategory" name="Category">
+                    <option value='0' selected="selected">Home</option>
+                    <option value='1'>Business</option>
+                    <option value='2'>Study</option>
+                    <option value='3'>Fun</option>
+                    <option value='4'>Other</option>
+                </select>
+            </div>
+            <div class="modal-footer" style="margin-top:0">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                <button type="button" id="btnPopupSaveChanges" data-dismiss="modal" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
