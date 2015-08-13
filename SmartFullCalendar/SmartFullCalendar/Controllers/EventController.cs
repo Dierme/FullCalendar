@@ -48,6 +48,11 @@ namespace SmartFullCalendar.Controllers
         [HttpPut]
         public async Task<HttpResponseMessage> UpdateEvent([FromBody]Event item)
         {
+            if (item != null)
+            {
+                item.UserId = User.Identity.GetUserId();
+                item.ColorName = GetEnumColor(item.Category);
+            }
             if (!ModelState.IsValid)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);

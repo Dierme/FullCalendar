@@ -23,6 +23,7 @@
                         title: $(this).attr('Title'),
                         start: $(this).attr('DateStart'),
                         end: $(this).attr('DateEnd'),
+                        add: $(this).attr('DateAdd'),
                         color: $(this).attr('ColorName'),
                         description: $(this).attr('Description'),
                         location: $(this).attr('Location'),
@@ -37,6 +38,17 @@
 
     eventClick: function (calEvent, jsEvent, view) {
         ClearInfoPopup();
+
+        ClearEditPopup();        
+        $('#editTitle').val(calEvent.title);
+        $('#editDescription').val(calEvent.description);
+        $('#editDateAdd').val(calEvent.add);
+        $('#editdatetimepicker1').data("DateTimePicker").date(calEvent.start);
+        $('#editdatetimepicker2').data("DateTimePicker").date(calEvent.end);
+        $('#editLocation').val(calEvent.location);
+        $('#editCategory').val(calEvent.category);        
+        $('#editId').val(calEvent.id);
+
         $('#infoId').val(calEvent.id);
         $('#infoTitle').text(calEvent.title);
         if (calEvent.description != null)
@@ -91,6 +103,8 @@
 $(function () {
     $('#datetimepicker1').datetimepicker();
     $('#datetimepicker2').datetimepicker();
+    $('#editdatetimepicker1').datetimepicker();
+    $('#editdatetimepicker2').datetimepicker();
     $('#dateReport1').datetimepicker();
     $('#dateReport2').datetimepicker();
     $('#datetimepicker1').data("DateTimePicker").widgetPositioning({ vertical: 'bottom', horizontal: 'left' });
@@ -144,6 +158,39 @@ $("#btnPopupRemove").click(function () {
     });
 });
 
+$("#btnPopupEdit").click(function () {
+        $("#editDialog").modal('show');
+        $("#infoDialog").modal('hide');
+    });
+
+$("#btnPopupSaveChanges").click(function () {
+        var editEvent = {
+                Id: $('#editId').val(),
+                Title: $('#editTitle').val(),
+                DateAdd: new Date(),
+                DateStart: $('#editdatetimepicker1').data("DateTimePicker").date().toDate(),
+                DateEnd: $('#editdatetimepicker2').data("DateTimePicker").date().toDate(),
+                Description: $('#editDescription').val(),
+                Location: $('#editLocation').val(),
+                Category: $('#editCategory').val(),
+            };
+    $.ajax({
+            type: 'PUT',
+            url: '/api/event/',
+            data: JSON.stringify(editEvent),
+            contentType: "application/json;charset=utf-8",
+            dataType: 'JSON',
+            success: function () {
+                alert("Success");
+                $('#calendar').fullCalendar('refetchEvents');
+            },
+        error: function (e) {
+                alert(e);
+            },
+    });
+});
+
+
 $("#btnReport").click(function (e) {
     var start = $('#dateReport1').data("DateTimePicker").date();
     var end = $('#dateReport2').data("DateTimePicker").date();
@@ -178,4 +225,14 @@ function ClearInfoPopup() {
     $('#infoDateEnd').text('');
     $('#infoLocation').text('');
     $('#infoCategory').text('');
+}
+
+function ClearEditPopup() {
+    $('#editTitle').val('');
+    $('#editDescription').val('');
+    $('#editDateAdd').val('');
+    $('#editdatetimepicker1').val('');
+    $('#editdatetimepicker2').val('');
+    $('#editLocation').val('');
+    $('#editCategory').val('Home');
 }

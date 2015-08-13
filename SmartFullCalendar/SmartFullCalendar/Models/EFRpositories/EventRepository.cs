@@ -47,6 +47,7 @@ namespace SmartFullCalendar.Models.EFRpositories
                 dbEntry.DateEnd = item.DateEnd;
                 dbEntry.Location = item.Location;
                 dbEntry.UserId = item.UserId;
+                dbEntry.ColorName = item.ColorName;
             }
             else
             {
