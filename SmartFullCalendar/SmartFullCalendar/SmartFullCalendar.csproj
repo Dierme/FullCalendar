@@ -193,6 +193,10 @@
     <Compile Include="Migrations\201508120828399_dateend nullable.Designer.cs">
       <DependentUpon>201508120828399_dateend nullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508130843580_colorNAme.cs" />
+    <Compile Include="Migrations\201508130843580_colorNAme.Designer.cs">
+      <DependentUpon>201508130843580_colorNAme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abstracts\IRepository.cs" />
     <Compile Include="Models\Abstracts\IStoreAppContext.cs" />
@@ -329,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508120828399_dateend nullable.resx">
       <DependentUpon>201508120828399_dateend nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508130843580_colorNAme.resx">
+      <DependentUpon>201508130843580_colorNAme.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

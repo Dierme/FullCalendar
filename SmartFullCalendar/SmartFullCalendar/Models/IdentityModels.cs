@@ -55,6 +55,8 @@ namespace SmartFullCalendar.Models
         [Required]
         public Category Category { get; set; }
 
+        public string ColorName { get; set; }
+
         [ForeignKey("User")]
         public string UserId { get; set; }
 

@@ -28,4 +28,10 @@ textarea {
     padding:7px 0 7px 0;
 }
 
+.customInput
+{
+    max-width: 280px;
+}
+
+
 

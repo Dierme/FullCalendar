@@ -28,6 +28,7 @@ namespace SmartFullCalendar.Controllers
             if (item != null) 
             {
                 item.UserId = User.Identity.GetUserId();
+                item.ColorName = GetEnumColor(item.Category);
             }
 
             if (!ModelState.IsValid)
@@ -111,7 +112,25 @@ namespace SmartFullCalendar.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        #region Helpers        
+        #region Helpers  
+        private string GetEnumColor(Category category)
+        {
+            switch (category) 
+            {
+                case Category.Home:
+                    return "#CD9B1D";                    
+                case Category.Business:
+                    return "#9400D3";                    
+                case Category.Study:
+                    return "#A0522D";
+                case Category.Other:
+                    return "#3A5FCD";
+                case Category.Fun:
+                    return "#EE6363";
+                default:
+                    return "#CD6090";
+            };
+        }
         private HttpResponseMessage GetErrorResult(IdentityResult result)
         {
             if (result == null)

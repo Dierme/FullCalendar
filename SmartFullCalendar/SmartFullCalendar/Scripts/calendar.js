@@ -4,7 +4,7 @@
         center: 'title',
         right: 'month, agendaWeek, agendaDay'
     },
-    editable: true,
+    editable: false,
     allDaySlot: false,
     selectable: true,
     events: function (start, end, callback) {        
@@ -23,6 +23,7 @@
                         title: $(this).attr('Title'),
                         start: $(this).attr('DateStart'),
                         end: $(this).attr('DateEnd'),
+                        color: $(this).attr('ColorName'),
                         description: $(this).attr('Description'),
                         location: $(this).attr('Location'),
                         category: $(this).attr('Category'),
