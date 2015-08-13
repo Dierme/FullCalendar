@@ -4,3 +4,25 @@
 <div id="calendar" ></div>
 @Html.Partial("_EventDetails")
 @Html.Partial("_CreateEvent")
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <div class='input-group date customInput form-group' id='dateReport1'>
+            <input type='text' class="form-control" name="startISO" placeholder="Start date here" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+        <div class='input-group date customInput form-group' id='dateReport2'>
+            <input type='text' class="form-control" name="endISO" placeholder="End date here" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-8" style="padding-top:2%">
+        <button type="button" id="btnReport" class="btn btn-success">Generate report</button>
+    </div>
+</div>
+

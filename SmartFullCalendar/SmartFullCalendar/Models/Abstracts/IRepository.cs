@@ -9,6 +9,7 @@ namespace SmartFullCalendar.Models.Abstracts
 {
     public interface IRepository
     {
+        IQueryable<Event> List { get; }
         Task<IdentityResult> Update(Event item);
         Task<IdentityResult> Remove(string id);
         Task<IdentityResult> Create(Event item);

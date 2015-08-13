@@ -90,13 +90,15 @@
 
 $(function () {
     $('#datetimepicker1').datetimepicker();
-    $('#datetimepicker2').datetimepicker();    
+    $('#datetimepicker2').datetimepicker();
+    $('#dateReport1').datetimepicker();
+    $('#dateReport2').datetimepicker();
     $('#datetimepicker1').data("DateTimePicker").widgetPositioning({ vertical: 'bottom', horizontal: 'left' });
     $('#datetimepicker2').data("DateTimePicker").widgetPositioning({ vertical: 'bottom', horizontal: 'left' });
 });
 
 $("#eventCreateForm").submit(function () {
-    var jqxhr = $.post('api/event/create', $('#eventCreateForm').serialize())
+    var jqxhr = $.post('api/event/', $('#eventCreateForm').serialize())
         .success(function () {
             $('#calendar').fullCalendar('refetchEvents');
             alert("Saved");
@@ -140,6 +142,21 @@ $("#btnPopupRemove").click(function () {
             $('#calendar').fullCalendar('refetchEvents');
         }
     });
+});
+
+$("#btnReport").click(function (e) {
+    var start = $('#dateReport1').data("DateTimePicker").date();
+    var end = $('#dateReport2').data("DateTimePicker").date();
+    if (start != null && end != null) {
+        var startDate = start.toDate().toISOString();
+        var endDate = end.toDate().toISOString();
+        var url = "/Report/Index?startISO=" + startDate + "&endISO=" + endDate;
+        window.location.assign(url);
+        console.log(startDate);
+        console.log(endDate);
+        console.log(url);
+        window.location.assign(url);
+    }    
 });
 
 function ClearCreatePopup()

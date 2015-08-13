@@ -1,0 +1,21 @@
+﻿@model SmartFullCalendar.Models.Event
+
+<div class="row form-horizontal">
+    <div class="col-md-3">
+        @Html.LabelFor(x => x.Title):
+        @Html.DisplayFor(x => x.Title)
+    </div>
+    <div class="col-md-3">
+        @Html.LabelFor(x => x.DateStart):
+        @Html.DisplayFor(x => x.DateStart)
+    </div>
+    <div class="col-md-3">
+        @Html.LabelFor(x => x.DateEnd):
+        @Html.DisplayFor(x => x.DateEnd)
+    </div>
+    <div class="col-md-3">
+        @Html.LabelFor(x => x.Description):
+        @Html.DisplayFor(x => x.Description)
+    </div>    
+</div>
+

@@ -176,10 +176,13 @@
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AppDbInit.cs" />
+    <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Helpers\PagingInfo.cs" />
     <Compile Include="Infrastructure\Ninject.cs" />
     <Compile Include="Migrations\201508111353224_InitialCreate.cs" />
     <Compile Include="Migrations\201508111353224_InitialCreate.Designer.cs">
@@ -204,6 +207,7 @@
     <Compile Include="Models\EFRpositories\EventRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -312,6 +316,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\_EventDetails.cshtml" />
     <Content Include="Views\Home\_CreateEvent.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Report\_EventRowPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
