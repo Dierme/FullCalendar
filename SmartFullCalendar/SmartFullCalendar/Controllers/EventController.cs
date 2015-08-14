@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 using System.Web.Http;
 
 namespace SmartFullCalendar.Controllers
@@ -16,8 +17,15 @@ namespace SmartFullCalendar.Controllers
     {
         private IRepository repository;
 
+
         public EventController(IRepository repos)
         {
+            var UserId = User.Identity.GetUserId();
+            if (UserId != null)
+            {
+                var userName = User.Identity.Name;
+                HostingEnvironment.RegisterObject(AlarmCheck.GetInstance(UserId, userName, repos));
+            }
             repository = repos;
         }
 
@@ -167,5 +175,17 @@ namespace SmartFullCalendar.Controllers
             return null;
         }
         #endregion
+        [HttpGet]
+        [ActionName("Loginpopup")]
+        public HttpResponseMessage OnLoginShowEventList()
+        {
+            DateTime Today = DateTime.Now;
+
+            var userId = User.Identity.GetUserId();
+            var result = repository.GetAllUserCurrentEvents(userId, Today).ToArray();
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+
     }
 }

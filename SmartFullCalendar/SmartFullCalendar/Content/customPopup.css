@@ -1,0 +1,30 @@
+﻿
+/**********All styles popup**********/
+.popup-style {
+    padding:5px 15px 15px;
+    position:fixed;
+    top:100px;
+    left:50%;
+    display:none;
+    overflow:hidden;
+    border:1px solid #ccc;
+    background:#fff;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+    z-index:100;
+    behavior: url(PIE.htc);
+}
+.popup-style h2 {
+    font:bold 18px/32px Arial, san-serif;
+}
+
+/**********popup with form**********/
+.alertPopup {
+    width: 300px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    margin: -150px 0 0 -150px;
+    margin-top: 10px;
+}

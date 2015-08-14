@@ -44,7 +44,7 @@ namespace SmartFullCalendar.Models
         [Required]
         [Display(Name="Start date")]
         [DataType(DataType.DateTime)]
-        public DateTime? DateStart { get; set; }        
+        public DateTime DateStart { get; set; }        
         
         
         [DataType(DataType.DateTime)]
@@ -57,7 +57,7 @@ namespace SmartFullCalendar.Models
 
         public string ColorName { get; set; }
 
-        public bool? Checked { get; set; }
+        public bool Checked { get; set; }
 
         [ForeignKey("User")]
         public string UserId { get; set; }

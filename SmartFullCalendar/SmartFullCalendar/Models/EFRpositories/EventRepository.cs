@@ -48,6 +48,7 @@ namespace SmartFullCalendar.Models.EFRpositories
                 dbEntry.Location = item.Location;
                 dbEntry.UserId = item.UserId;
                 dbEntry.ColorName = item.ColorName;
+                dbEntry.Checked = item.Checked;
             }
             else
             {
@@ -94,6 +95,20 @@ namespace SmartFullCalendar.Models.EFRpositories
         {
             var result = context.Events
                     .Where(x =>x.UserId==userId && (x.DateStart >= start && x.DateStart <= end));            
+            return result;
+        }
+
+        public IEnumerable<Event> GetAllUserCurrentEvents(string userId, DateTime today)
+        {
+            var result = context.Events
+                    .Where(x => x.UserId == userId && ((x.DateStart <= today && x.DateEnd >= today) || (x.DateStart.Day == today.Day && x.DateStart.Month == today.Month && x.DateStart.Year == today.Year) ));
+            return result;
+        }
+
+        public IEnumerable<Event> GetAllUserEventsStartToday(string userId)
+        {
+            var result = context.Events
+                    .Where(x => x.UserId == userId && (x.DateStart.Day == DateTime.Now.Day && x.DateStart.Month == DateTime.Now.Month && x.DateStart.Year == DateTime.Now.Year));
             return result;
         }
 

@@ -15,6 +15,7 @@ namespace SmartFullCalendar.Models.Abstracts
         Task<IdentityResult> Create(Event item);
         Task<Event> TakeEvent(string id);
         IEnumerable<Event> TakeAllFromTo(string Id, DateTime startDate, DateTime endDate);
-
+        IEnumerable<Event> GetAllUserCurrentEvents(string userId, DateTime today);
+        IEnumerable<Event> GetAllUserEventsStartToday(string userId);
     }
 }

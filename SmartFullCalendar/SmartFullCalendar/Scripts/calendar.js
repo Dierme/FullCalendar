@@ -100,6 +100,51 @@
     }
 });
 
+
+
+
+$(function () {
+    $.ajax({
+        type: "GET",
+        dataType: 'json',
+        url: "api/event/",
+        success: function (data) {
+            if (data[0] != null) {
+                $(".headerAlarmEvent").html("<h3>Events for today</h3>")
+                $('#loadingAlarmEvent').remove('#loadingAlarmEvent');
+                var EventNumber = 0;
+                var EventName;
+                $(data).each(function () {                    
+                    EventName = "Event" + EventNumber;
+                    $('.alarmPopupBody').append("<div class='" + EventName + " '></div>");
+                    $("." + EventName).html("<h4>" + data[EventNumber].Title + " </h4>" + data[EventNumber].Description);
+                    EventNumber++;
+                });
+            }
+            else {
+                $(".headerAlarmEvent").html("<h3>Events for today</h3>")
+                $('#loadingAlarmEvent').remove('#loadingAlarmEvent');
+                $('.alarmPopupBody').append("<div class=' alarmPopupMsg '></div>");
+                $(".alarmPopupMsg").html("<h3>You have no events for today </h3>");
+            }
+        },
+        error: function () {
+            $('.content-box-popup').append("<div class='alertmsg' id = 'alertmsgid'></div>");
+            $(".alertmsg").html("<h2>Sa!</h2>");
+            $('.alertPopup').fadeIn(500);
+            setTimeout(FadeOut, 3000);
+            setTimeout(RemoveMsg, 5000)
+        }
+    });
+    $('#alarmPopup').modal('show');
+
+});
+
+
+
+
+
+
 $(function () {
     $('#datetimepicker1').datetimepicker();
     $('#datetimepicker2').datetimepicker();
@@ -115,7 +160,11 @@ $("#eventCreateForm").submit(function () {
     var jqxhr = $.post('api/event/', $('#eventCreateForm').serialize())
         .success(function () {
             $('#calendar').fullCalendar('refetchEvents');
-            alert("Saved");
+            $('.content-box-popup').append("<div class='alertmsg' id = 'alertmsgid'></div>");
+            $(".alertmsg").html("<h2>Created!</h2>");
+            $('.alertPopup').fadeIn(500);
+            setTimeout(FadeOut, 3000);
+            setTimeout(RemoveMsg, 5000)
         })
         .error(function (errors) {
             var message = '';
@@ -127,7 +176,11 @@ $("#eventCreateForm").submit(function () {
                     message += error['<ErrorMessage>k__BackingField']+'\n';                    
                 })                
             })
-            alert(message);           
+            $('.content-box-popup').append("<div class='alertmsg' id = 'alertmsgid'></div>");
+            $(".alertmsg").html("<h2>" + message + "</h2>");
+            $('.alertPopup').fadeIn(500);
+            setTimeout(FadeOut, 3000);
+            setTimeout(RemoveMsg, 5000)
         });
     return false;
 });
@@ -152,8 +205,12 @@ $("#btnPopupRemove").click(function () {
         type: 'DELETE',
         url: '/api/event/remove?Id=' + $('#infoId').val(),
         success: function () {
-            alert("Success!");
             $('#calendar').fullCalendar('refetchEvents');
+            $('.content-box-popup').append("<div class='alertmsg' id = 'alertmsgid'></div>");
+            $(".alertmsg").html("<h2>Deleted!</h2>");
+            $('.alertPopup').fadeIn(500);
+            setTimeout(FadeOut, 3000);
+            setTimeout(RemoveMsg, 5000)
         }
     });
 });
@@ -164,12 +221,16 @@ $("#btnPopupEdit").click(function () {
     });
 
 $("#btnPopupSaveChanges").click(function () {
+    var endDate = null;
+    if ($('#editdatetimepicker2').data("DateTimePicker").date() != null) {
+        endDate = $('#editdatetimepicker2').data("DateTimePicker").date().format('MM.DD.YYYY h:mm:ss a');
+    }
         var editEvent = {
                 Id: $('#editId').val(),
                 Title: $('#editTitle').val(),
                 DateAdd: new Date(),
-                DateStart: $('#editdatetimepicker1').data("DateTimePicker").date().toDate(),
-                DateEnd: $('#editdatetimepicker2').data("DateTimePicker").date().toDate(),
+                DateStart: $('#editdatetimepicker1').data("DateTimePicker").date().format('MM.DD.YYYY h:mm:ss a'),
+                DateEnd: endDate,
                 Description: $('#editDescription').val(),
                 Location: $('#editLocation').val(),
                 Category: $('#editCategory').val(),
@@ -181,14 +242,23 @@ $("#btnPopupSaveChanges").click(function () {
             contentType: "application/json;charset=utf-8",
             dataType: 'JSON',
             success: function () {
-                alert("Success");
                 $('#calendar').fullCalendar('refetchEvents');
+                $('.content-box-popup').append("<div class='alertmsg' id = 'alertmsgid'></div>");
+                $(".alertmsg").html("<h2>Saved!</h2>");
+                $('.alertPopup').fadeIn(500);
+                setTimeout(FadeOut, 3000);
+                setTimeout(RemoveMsg, 5000)
             },
-        error: function (e) {
-                alert(e);
+            error: function (e) {
+            $('.content-box-popup').append("<div class='alertmsg' id = 'alertmsgid'></div>");
+            $(".alertmsg").html("<h2>"+e+"</h2>");
+            $('.alertPopup').fadeIn(500);
+            setTimeout(FadeOut, 3000);
+            setTimeout(RemoveMsg, 5000)
             },
     });
 });
+
 
 
 $("#btnReport").click(function (e) {
@@ -236,3 +306,35 @@ function ClearEditPopup() {
     $('#editLocation').val('');
     $('#editCategory').val('Home');
 }
+
+
+function FadeOut() {
+    $(".alertPopup").fadeOut(1500);
+}
+
+function RemoveMsg() {
+    $('#alertmsgid').remove('#alertmsgid');
+}
+
+$(function () {
+
+    var alertHub = $.connection.alarmHub;
+    alertHub.client.upcomingEvent = function (Event) {
+        $('#alarmEventPopup').modal('show');
+        $(".alarmEventPopupBody").html("<h3>" + Event + "</h3>");
+    };
+   
+    alertHub.client.timeSpan = function (TimeSpan) {
+        alert("TimeSpan = " + TimeSpan);
+    }
+
+    alertHub.client.dateNow = function (Date) {
+        alert("Date = " + Date);
+    }
+
+
+
+    $.connection.hub.start().done(function () {
+
+    });
+});

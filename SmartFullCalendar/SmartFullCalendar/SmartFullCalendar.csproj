@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +40,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.1.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.3-unstable-012\lib\net45-full\Ninject.dll</HintPath>
@@ -166,6 +175,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlarmCheck.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -183,6 +193,7 @@
     <Compile Include="Helpers\AppDbInit.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Helpers\PagingInfo.cs" />
+    <Compile Include="Hubs\AlarmHub.cs" />
     <Compile Include="Infrastructure\Ninject.cs" />
     <Compile Include="Migrations\201508111353224_InitialCreate.cs" />
     <Compile Include="Migrations\201508111353224_InitialCreate.Designer.cs">
@@ -204,6 +215,10 @@
     <Compile Include="Migrations\201508132058195_checked.Designer.cs">
       <DependentUpon>201508132058195_checked.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508140858492_somemigration.cs" />
+    <Compile Include="Migrations\201508140858492_somemigration.Designer.cs">
+      <DependentUpon>201508140858492_somemigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abstracts\IRepository.cs" />
     <Compile Include="Models\Abstracts\IStoreAppContext.cs" />
@@ -219,6 +234,7 @@
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\customPopup.css" />
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -271,6 +287,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -322,6 +340,9 @@
     <Content Include="Views\Home\_CreateEvent.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Home\_EditEvent.cshtml" />
+    <Content Include="Views\Home\_AlarmEvent.cshtml" />
+    <Content Include="Views\Home\_AlertPopup.cshtml" />
+    <Content Include="Views\Home\_AlarmEventPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -350,6 +371,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508132058195_checked.resx">
       <DependentUpon>201508132058195_checked.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508140858492_somemigration.resx">
+      <DependentUpon>201508140858492_somemigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
