@@ -33,7 +33,7 @@ namespace SmartFullCalendar
         private string _userName;
 
 
-        public AlarmCheck(string UserId, string UserName, IRepository repos)
+        private AlarmCheck(string UserId, string UserName, IRepository repos)
         {
             _repository = repos;
             _userId = UserId;
@@ -61,7 +61,7 @@ namespace SmartFullCalendar
                 double timespanishe = Math.Ceiling(TimeForEvent.TotalMinutes);
                 //_alarmHub.Clients.Group(_userName).timeSpan(timespanishe);
                
-                if (timespanishe == 60 && !TheEvent.Checked)
+                if (timespanishe == 10 && !TheEvent.Checked)
                 {
                     TheEvent.Checked = true;
                     _alarmHub.Clients.Group(_userName).upcomingEvent("Title: " + TheEvent.Title + "<br>" + "Begins: " + TheEvent.DateStart.ToString());
